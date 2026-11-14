@@ -238,8 +238,14 @@ class StartScreen extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   children: const [
                     _StartFeatureChip(icon: Icons.coffee, label: 'Coffee'),
-                    _StartFeatureChip(icon: Icons.emoji_food_beverage, label: 'Tea'),
-                    _StartFeatureChip(icon: Icons.bakery_dining, label: 'Pastries'),
+                    _StartFeatureChip(
+                      icon: Icons.emoji_food_beverage,
+                      label: 'Tea',
+                    ),
+                    _StartFeatureChip(
+                      icon: Icons.bakery_dining,
+                      label: 'Pastries',
+                    ),
                   ],
                 ),
 

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../domain/models/product.dart';
+import '../../../../domain/models/product.dart';
 
 /// Represents a grouped product line item in the shopping cart.
 class CartItem {

@@ -44,12 +44,23 @@ void main() {
     // Cart count badge should show 1.
     expect(find.text('1'), findsOneWidget);
 
-    // Open CartScreen and verify item and total.
+    // Open CartScreen and verify item, quantity increment, and removal.
     await tester.tap(find.byIcon(Icons.shopping_cart));
     await tester.pumpAndSettle();
 
     expect(find.text('My Cart'), findsOneWidget);
     expect(find.text('Iced Matcha Latte'), findsOneWidget);
-    expect(find.text('₱175.00'), findsNWidgets(2));
+    expect(find.text('₱175.00'), findsNWidgets(3));
+
+    // Increment quantity to 2 (total becomes ₱350.00).
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+    expect(find.text('2'), findsOneWidget);
+    expect(find.text('₱350.00'), findsNWidgets(2));
+
+    // Remove item from cart.
+    await tester.tap(find.byIcon(Icons.delete_outline));
+    await tester.pumpAndSettle();
+    expect(find.text('Your cart is empty.'), findsOneWidget);
   });
 }
