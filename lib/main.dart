@@ -1,40 +1,29 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MiniShopApp());
+  runApp(const SmoochCafeApp());
 }
 
 // ============================================================
-// FINAL PROJECT STARTER CODE
-// Customize this application based on your chosen e-commerce.
-//
-// IMPORTANT:
-// The required Start Screen is intentionally NOT included.
-// Create your own StartScreen and use Navigator.push() on a
-// button to open HomeScreen.
-//
-// After creating StartScreen, change:
-//   home: const HomeScreen(),
-// to:
-//   home: const StartScreen(),
+// SMOOCH CAFE E-COMMERCE APPLICATION
+// Customized from the Final Project Starter Code.
+// Flow: StartScreen -> HomeScreen -> ProductDetailsScreen / CartScreen
 // ============================================================
 
 // ============================================================
-// APPLICATION COLORS
-// Customize these colors to match your selected e-commerce.
+// APPLICATION COLORS (Matched to logo2.png)
 // ============================================================
 
 class AppColors {
-  static const Color primary = Color(0xFF1565C0);
-  static const Color background = Color(0xFFF5F7FA);
+  static const Color primary = Color(0xFF01687B);
+  static const Color accent = Color(0xFFFE504F);
+  static const Color background = Color(0xFFF3F9FA);
   static const Color card = Colors.white;
-  static const Color text = Color(0xFF202124);
+  static const Color text = Color(0xFF162B30);
 }
 
 // ============================================================
 // PRODUCT MODEL
-// Each product contains a name, price, category,
-// description, and local image path.
 // ============================================================
 
 class Product {
@@ -55,64 +44,80 @@ class Product {
 
 // ============================================================
 // PRODUCT DATA
-// Replace these products with your own.
-// Add more Product(...) blocks as needed.
 // ============================================================
 
 const List<Product> demoProducts = [
   Product(
-    name: 'Wireless Headphones',
-    price: 1499,
-    category: 'Electronics',
+    name: 'Caramel Macchiato',
+    price: 165,
+    category: 'Coffee',
     description:
-        'Comfortable wireless headphones with clear audio, '
-        'soft ear cushions, and long battery life.',
-    image: 'assets/images/headphones.jpg',
+        'Rich espresso layered with steamed milk, velvety foam, '
+        'and house-made caramel drizzle.',
+    image: 'assets/images/caramel_macchiato.jpg',
   ),
   Product(
-    name: 'Smart Watch',
-    price: 2999,
-    category: 'Electronics',
+    name: 'Iced Spanish Latte',
+    price: 155,
+    category: 'Coffee',
     description:
-        'A lightweight smart watch that displays notifications, '
-        'time, activity information, and basic daily functions.',
-    image: 'assets/images/smartwatch.jpg',
+        'Smooth double-shot espresso poured over chilled milk '
+        'and sweetened condensed milk.',
+    image: 'assets/images/spanish_latte.jpg',
   ),
   Product(
-    name: 'Phone Case',
-    price: 399,
-    category: 'Accessories',
+    name: 'Classic Americano',
+    price: 120,
+    category: 'Coffee',
     description:
-        'A protective phone case designed to protect your '
-        'device from scratches and minor impacts.',
-    image: 'assets/images/phone_case.jpg',
+        'Bold, aromatic espresso diluted with hot or cold filtered '
+        'water for a clean, crisp finish.',
+    image: 'assets/images/americano.jpg',
   ),
   Product(
-    name: 'Laptop Sleeve',
-    price: 799,
-    category: 'Accessories',
+    name: 'Iced Matcha Latte',
+    price: 175,
+    category: 'Tea',
     description:
-        'A padded laptop sleeve suitable for protecting '
-        'your computer while traveling.',
-    image: 'assets/images/laptop_sleeve.jpg',
+        'Ceremonial-grade Japanese green tea whisked to order '
+        'and served over creamy chilled milk.',
+    image: 'assets/images/matcha_latte.jpg',
   ),
   Product(
-    name: 'Desk Lamp',
-    price: 899,
-    category: 'Home',
+    name: 'Peach Oolong Tea',
+    price: 140,
+    category: 'Tea',
     description:
-        'A compact desk lamp designed for studying, reading, '
-        'and working at home.',
-    image: 'assets/images/desk_lamp.jpg',
+        'Fragrant roasted oolong tea infused with sweet ripe '
+        'peach nectar over crystal-clear ice.',
+    image: 'assets/images/peach_oolong.jpg',
   ),
   Product(
-    name: 'Bluetooth Speaker',
-    price: 1199,
-    category: 'Electronics',
+    name: 'Butter Croissant',
+    price: 110,
+    category: 'Pastries',
     description:
-        'A portable Bluetooth speaker suitable for music, '
-        'videos, and everyday listening.',
-    image: 'assets/images/speaker.jpg',
+        'Flaky, golden-brown French pastry baked fresh every '
+        'morning with rich cultured butter.',
+    image: 'assets/images/croissant.jpg',
+  ),
+  Product(
+    name: 'Chocolate Muffin',
+    price: 125,
+    category: 'Pastries',
+    description:
+        'Moist double-chocolate bakery muffin loaded with '
+        'melting dark chocolate chunks.',
+    image: 'assets/images/chocolate_muffin.jpg',
+  ),
+  Product(
+    name: 'Strawberry Cheesecake',
+    price: 195,
+    category: 'Pastries',
+    description:
+        'Creamy baked cheesecake topped with sweet strawberry '
+        'compote on a buttery graham crust.',
+    image: 'assets/images/strawberry_cheesecake.jpg',
   ),
 ];
 
@@ -120,34 +125,202 @@ const List<Product> demoProducts = [
 // MAIN APPLICATION
 // ============================================================
 
-class MiniShopApp extends StatelessWidget {
-  const MiniShopApp({super.key});
+class SmoochCafeApp extends StatelessWidget {
+  const SmoochCafeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MiniShop',
+      title: 'Smooch Cafe',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.primary,
+          primary: AppColors.primary,
+          secondary: AppColors.accent,
+        ),
+        scaffoldBackgroundColor: AppColors.background,
       ),
+      home: const StartScreen(),
+    );
+  }
+}
 
-      // FINAL PROJECT:
-      // Change this to StartScreen after creating it.
-      home: const HomeScreen(),
+// ============================================================
+// START SCREEN
+// Opens HomeScreen using Navigator.push() and MaterialPageRoute.
+// ============================================================
+
+class StartScreen extends StatelessWidget {
+  const StartScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.primary,
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(32),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.22),
+                        blurRadius: 24,
+                        offset: const Offset(0, 12),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      'assets/images/logo2.png',
+                      width: 210,
+                      height: 210,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const SizedBox(
+                          width: 210,
+                          height: 210,
+                          child: Icon(
+                            Icons.local_cafe,
+                            size: 96,
+                            color: Colors.white,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 28),
+
+                const Text(
+                  'SMOOCH CAFE',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.8,
+                    color: Colors.white,
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                Text(
+                  'Freshly brewed coffee, soothing teas, and artisan pastries crafted daily.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15,
+                    height: 1.5,
+                    color: Colors.white.withValues(alpha: 0.88),
+                  ),
+                ),
+
+                const SizedBox(height: 24),
+
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: const [
+                    _StartFeatureChip(icon: Icons.coffee, label: 'Coffee'),
+                    _StartFeatureChip(icon: Icons.emoji_food_beverage, label: 'Tea'),
+                    _StartFeatureChip(icon: Icons.bakery_dining, label: 'Pastries'),
+                  ],
+                ),
+
+                const SizedBox(height: 36),
+
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.storefront),
+                    label: const Text(
+                      'ORDER NOW',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.1,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.accent,
+                      foregroundColor: Colors.white,
+                      elevation: 4,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StartFeatureChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _StartFeatureChip({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 16, color: Colors.white),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
 // ============================================================
 // HOME SCREEN
-// Contains:
-// - Store name
-// - Cart button and item counter
-// - Search field
-// - Category filters
-// - Product grid
 // ============================================================
 
 class HomeScreen extends StatefulWidget {
@@ -162,18 +335,15 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedCategory = 'All';
 
   final List<Product> cartItems = [];
+  final TextEditingController _searchController = TextEditingController();
 
-  // ==========================================================
-  // CATEGORIES
-  // Add or remove categories here.
-  // Product.category must exactly match one of these values.
-  // ==========================================================
+  final List<String> categories = ['All', 'Coffee', 'Tea', 'Pastries'];
 
-  final List<String> categories = ['All', 'Electronics', 'Accessories', 'Home'];
-
-  // ==========================================================
-  // FILTER PRODUCTS
-  // ==========================================================
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   List<Product> get filteredProducts {
     return demoProducts.where((product) {
@@ -187,10 +357,6 @@ class _HomeScreenState extends State<HomeScreen> {
       return matchesSearch && matchesCategory;
     }).toList();
   }
-
-  // ==========================================================
-  // OPEN PRODUCT DETAILS
-  // ==========================================================
 
   Future<void> openProduct(Product product) async {
     final addedProduct = await Navigator.push<Product>(
@@ -208,14 +374,13 @@ class _HomeScreenState extends State<HomeScreen> {
       if (!mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${addedProduct.name} added to cart.')),
+        SnackBar(
+          backgroundColor: AppColors.primary,
+          content: Text('${addedProduct.name} added to cart.'),
+        ),
       );
     }
   }
-
-  // ==========================================================
-  // OPEN CART
-  // ==========================================================
 
   void openCart() {
     Navigator.push(
@@ -232,13 +397,28 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-
-        // CUSTOMIZE STORE NAME
-        title: const Text(
-          'MiniShop',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        elevation: 0,
+        title: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/images/logo2.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.local_cafe, color: Colors.white);
+                },
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'Smooch Cafe',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-
         actions: [
           Stack(
             children: [
@@ -246,15 +426,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: openCart,
                 icon: const Icon(Icons.shopping_cart),
               ),
-
               if (cartItems.isNotEmpty)
                 Positioned(
-                  right: 3,
-                  top: 3,
+                  right: 4,
+                  top: 4,
                   child: Container(
                     padding: const EdgeInsets.all(5),
                     decoration: const BoxDecoration(
-                      color: Colors.red,
+                      color: AppColors.accent,
                       shape: BoxShape.circle,
                     ),
                     child: Text(
@@ -282,9 +461,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // CUSTOMIZE HOME HEADING
                 const Text(
-                  'Find what you need',
+                  'Fresh Brews & Treats',
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
@@ -292,25 +470,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 5),
+                const SizedBox(height: 4),
 
                 const Text(
-                  'Browse our product collection.',
+                  'Order your favorite coffee, tea, and pastries.',
                   style: TextStyle(color: Colors.black54),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 18),
 
-                // SEARCH FIELD
                 TextField(
+                  controller: _searchController,
                   onChanged: (value) {
                     setState(() {
                       searchText = value;
                     });
                   },
                   decoration: InputDecoration(
-                    hintText: 'Search products...',
-                    prefixIcon: const Icon(Icons.search),
+                    hintText: 'Search coffee, tea, pastries...',
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: AppColors.primary,
+                    ),
+                    suffixIcon: searchText.isNotEmpty
+                        ? IconButton(
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() {
+                                searchText = '';
+                              });
+                            },
+                            icon: const Icon(Icons.clear),
+                          )
+                        : null,
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -324,14 +516,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const Text(
                   'Categories',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.text,
+                  ),
                 ),
 
                 const SizedBox(height: 10),
 
-                // CATEGORY CHIPS
                 SizedBox(
-                  height: 45,
+                  height: 44,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories.length,
@@ -340,10 +535,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     itemBuilder: (context, index) {
                       final category = categories[index];
+                      final isSelected = selectedCategory == category;
 
                       return ChoiceChip(
-                        label: Text(category),
-                        selected: selectedCategory == category,
+                        label: Text(
+                          category,
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : AppColors.text,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        selected: isSelected,
+                        selectedColor: AppColors.primary,
+                        backgroundColor: Colors.white,
+                        checkmarkColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(
+                            color: isSelected
+                                ? AppColors.primary
+                                : Colors.grey.shade300,
+                          ),
+                        ),
                         onSelected: (selected) {
                           setState(() {
                             selectedCategory = category;
@@ -354,16 +567,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 24),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Products',
+                      'Cafe Menu',
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 21,
                         fontWeight: FontWeight.bold,
+                        color: AppColors.text,
                       ),
                     ),
                     Text(
@@ -373,20 +587,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 15),
+                const SizedBox(height: 14),
 
                 if (filteredProducts.isEmpty)
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 50),
                     child: Center(
                       child: Text(
-                        'No products found.',
+                        'No menu items found.',
                         style: TextStyle(fontSize: 18, color: Colors.black54),
                       ),
                     ),
                   )
                 else
-                  // RESPONSIVE PRODUCT GRID
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -432,7 +645,7 @@ class ProductCard extends StatelessWidget {
     return Card(
       color: AppColors.card,
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
@@ -449,8 +662,8 @@ class ProductCard extends StatelessWidget {
                   errorBuilder: (context, error, stackTrace) {
                     return const Center(
                       child: Icon(
-                        Icons.image_not_supported,
-                        size: 60,
+                        Icons.local_cafe,
+                        size: 56,
                         color: Colors.grey,
                       ),
                     );
@@ -465,20 +678,26 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    product.category.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.8,
+                      color: AppColors.accent,
+                    ),
+                  ),
+
+                  const SizedBox(height: 3),
+
+                  Text(
                     product.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
+                      color: AppColors.text,
                     ),
-                  ),
-
-                  const SizedBox(height: 4),
-
-                  Text(
-                    product.category,
-                    style: const TextStyle(fontSize: 12, color: Colors.black54),
                   ),
 
                   const SizedBox(height: 8),
@@ -486,7 +705,7 @@ class ProductCard extends StatelessWidget {
                   Text(
                     '₱${product.price.toStringAsFixed(2)}',
                     style: const TextStyle(
-                      fontSize: 17,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: AppColors.primary,
                     ),
@@ -532,6 +751,13 @@ class ProductDetailsScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.06),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               clipBehavior: Clip.antiAlias,
               child: Image.asset(
@@ -540,7 +766,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(
                     child: Icon(
-                      Icons.image_not_supported,
+                      Icons.local_cafe,
                       size: 100,
                       color: Colors.grey,
                     ),
@@ -549,21 +775,36 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 22),
+
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              decoration: BoxDecoration(
+                color: AppColors.accent.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                product.category,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.accent,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
 
             Text(
               product.name,
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: AppColors.text,
+              ),
             ),
 
-            const SizedBox(height: 7),
-
-            Text(
-              product.category,
-              style: const TextStyle(fontSize: 15, color: Colors.black54),
-            ),
-
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
 
             Text(
               '₱${product.price.toStringAsFixed(2)}',
@@ -574,21 +815,29 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 22),
 
             const Text(
               'Description',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: AppColors.text,
+              ),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
 
             Text(
               product.description,
-              style: const TextStyle(fontSize: 16, height: 1.6),
+              style: const TextStyle(
+                fontSize: 16,
+                height: 1.6,
+                color: Colors.black87,
+              ),
             ),
 
-            const SizedBox(height: 35),
+            const SizedBox(height: 32),
 
             SizedBox(
               width: double.infinity,
@@ -597,11 +846,17 @@ class ProductDetailsScreen extends StatelessWidget {
                   Navigator.pop(context, product);
                 },
                 icon: const Icon(Icons.add_shopping_cart),
-                label: const Text('ADD TO CART'),
+                label: const Text(
+                  'ADD TO CART',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
+                  backgroundColor: AppColors.accent,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                 ),
               ),
             ),
@@ -647,7 +902,10 @@ class CartScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   SizedBox(height: 15),
-                  Text('Your cart is empty.', style: TextStyle(fontSize: 20)),
+                  Text(
+                    'Your cart is empty.',
+                    style: TextStyle(fontSize: 20, color: AppColors.text),
+                  ),
                 ],
               ),
             )
@@ -661,6 +919,10 @@ class CartScreen extends StatelessWidget {
                 final product = cartItems[index];
 
                 return Card(
+                  color: AppColors.card,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   child: ListTile(
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
@@ -671,19 +933,26 @@ class CartScreen extends StatelessWidget {
                           product.image,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
-                            return const Icon(Icons.image_not_supported);
+                            return const Icon(Icons.local_cafe);
                           },
                         ),
                       ),
                     ),
-
-                    title: Text(product.name),
-
+                    title: Text(
+                      product.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.text,
+                      ),
+                    ),
                     subtitle: Text(product.category),
-
                     trailing: Text(
                       '₱${product.price.toStringAsFixed(2)}',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                 );
@@ -710,6 +979,7 @@ class CartScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            color: AppColors.text,
                           ),
                         ),
                         Text(
@@ -731,6 +1001,7 @@ class CartScreen extends StatelessWidget {
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
+                              backgroundColor: AppColors.primary,
                               content: Text(
                                 'Checkout is for demonstration only.',
                               ),
@@ -738,11 +1009,20 @@ class CartScreen extends StatelessWidget {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
+                          backgroundColor: AppColors.accent,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
                         ),
-                        child: const Text('CHECKOUT'),
+                        child: const Text(
+                          'CHECKOUT',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
                       ),
                     ),
                   ],
